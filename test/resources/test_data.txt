@@ -1,0 +1,14 @@
+?Which of these animals is a mammal
+Ant
+Bee
+*Cat
+?How old are you
+*99
+123
+312
+?What is your favorite color
+blue
+*green
+yellow
+
+apple
