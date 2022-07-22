@@ -1,12 +1,12 @@
 from unittest import TestCase
 
-from Survey.question import Question
+from survey.survey_element import SurveyElement
 
 
 class QuestionCreation(TestCase):
 
     def test_add_answer(self):
-        question = Question()
+        question = SurveyElement()
 
         question.add_wrong_answer("a1")
         question.add_wrong_answer("a2")
@@ -18,14 +18,14 @@ class QuestionCreation(TestCase):
         self.assertEqual("a3", question.answer[2])
 
     def test_add_right_answer_beginning(self):
-        q = Question()
+        q = SurveyElement()
         q.add_right_answer("hello")
         q.add_wrong_answer("wrong")
         q.add_wrong_answer("wrong2")
         self.assertEqual(0, q._correct_answer_index)
 
     def test_add_right_answer__add_to_multiple_answers(self):
-        question = Question()
+        question = SurveyElement()
         question.add_wrong_answer("a1")
         question.add_wrong_answer("a2")
         question.add_right_answer("right")
@@ -36,7 +36,7 @@ class QuestionCreation(TestCase):
         self.assertEqual("right", right_answer)
 
     def test_add_wrong_answer(self):
-        question = Question()
+        question = SurveyElement()
         question.add_wrong_answer("a1")
         question.add_wrong_answer("a2")
 
@@ -45,7 +45,7 @@ class QuestionCreation(TestCase):
         self.assertEqual("a2", question.answer[1])
 
     def test_is_valid_question(self):
-        question = Question()
+        question = SurveyElement()
 
         question.question = "question?"
         question.add_right_answer("right")
@@ -54,7 +54,7 @@ class QuestionCreation(TestCase):
         self.assertTrue(question.is_valid_question())
 
     def test_is_valid_question__no_answer(self):
-        question = Question()
+        question = SurveyElement()
         question.question = "hallo"
         question.add_wrong_answer("a1")
 
@@ -65,7 +65,7 @@ class QuestionCreation(TestCase):
         self.assertTrue(question.is_valid_question())
 
     def test_is_valid_question__wrong_correct_answer_index(self):
-        question = Question()
+        question = SurveyElement()
         question.question = "hallo"
         question.add_wrong_answer("a1")
         question.add_right_answer("right")
@@ -78,7 +78,7 @@ class QuestionCreation(TestCase):
         self.assertTrue(is_valid_question)
 
     def test_is_valid_question__no_question_set(self):
-        question = Question()
+        question = SurveyElement()
         question.add_wrong_answer("a1")
         question.add_right_answer("right")
 

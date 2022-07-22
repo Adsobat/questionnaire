@@ -1,6 +1,6 @@
 from typing import List
 
-from anwser import Answer
+from answer.anwser import Answer
 
 
 def evaluate(answers: List[Answer]) -> (int, int):
@@ -11,5 +11,5 @@ def evaluate(answers: List[Answer]) -> (int, int):
         if answers.is_correct:
             correctly_answered += 1
 
-    points = correctly_answered / max_questions
-    return correctly_answered, points
+    score = correctly_answered / max_questions if max_questions > 0 else 0
+    return correctly_answered, score

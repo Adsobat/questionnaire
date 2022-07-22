@@ -1,10 +1,10 @@
 from typing import List
 
-from anwser import Answer
-from Survey.question import Question
+from answer.anwser import Answer
+from survey.survey_element import SurveyElement
 
 
-def ask_question(survey_element: Question) -> Answer:
+def ask_question(survey_element: SurveyElement) -> Answer:
     question_console_representation = render_question(survey_element)
     render_text(question_console_representation)
     picked_answer_number = _get_user_input(1, len(survey_element.answer))
@@ -43,7 +43,7 @@ def render_text(lines: List[str]):
         print(line)
 
 
-def render_question(survey_element: Question) -> List[str]:
+def render_question(survey_element: SurveyElement) -> List[str]:
     question_text = survey_element.question
     answers = [f"{i + 1}) {txt}" for i, txt in enumerate(survey_element.answer)]
 
@@ -54,8 +54,8 @@ def _print_score(correctly_answered, points, questions_amount):
     print(f"you got {correctly_answered} / {questions_amount} right ({points}%)")
 
 
-def render_results(correctly_answered: int, points: int, answers: List[Answer]):
-    _print_score(correctly_answered, points, len(answers))
+def render_results(correctly_answered: int, score: int, answers: List[Answer]):
+    _print_score(correctly_answered, score, len(answers))
     _render_answers_result(answers)
     return None
 

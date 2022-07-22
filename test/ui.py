@@ -1,11 +1,11 @@
 from unittest import TestCase
-from Ui import ui
-from Survey.question import Question
+from ui import ui
+from survey.survey_element import SurveyElement
 
 
 class UI(TestCase):
     def test_render_question(self):
-        question = Question()
+        question = SurveyElement()
         question.question = "What is your house like?"
         question.add_wrong_answer("curly")
         question.add_wrong_answer("big")

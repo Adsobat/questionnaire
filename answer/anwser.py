@@ -1,6 +1,3 @@
-from Survey.question import Question
-
-
 class Answer:
     question: str
     picked_answer: str

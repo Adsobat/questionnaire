@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from Survey import question_provider
+from survey import survey_provider
 
 TEST_DATA_PATH = "test/resources/test_data.txt"
 
@@ -8,12 +8,12 @@ TEST_DATA_PATH = "test/resources/test_data.txt"
 class QuestionProvider(TestCase):
 
     def test_get_questions__amount(self):
-        questions = question_provider.get_questions(path=TEST_DATA_PATH)
+        questions = survey_provider.get_questions(path=TEST_DATA_PATH)
 
         self.assertEqual(3, len(questions))
 
     def test_get_questions__correct_question_parse(self):
-        questions = question_provider.get_questions(path=TEST_DATA_PATH)
+        questions = survey_provider.get_questions(path=TEST_DATA_PATH)
 
         question_texts = [q.question for q in questions]
 
@@ -22,7 +22,7 @@ class QuestionProvider(TestCase):
         self.assertEqual("What is your favorite color", question_texts[2])
 
     def test_get_questions__correct_answer_parse(self):
-        questions = question_provider.get_questions(path=TEST_DATA_PATH)
+        questions = survey_provider.get_questions(path=TEST_DATA_PATH)
 
         question_answers = [q.answer for q in questions]
 

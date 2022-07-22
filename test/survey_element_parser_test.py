@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from Survey.question_parser import parse
+from survey.survey_parser import parse
 SINGLE_SURVEY = ["?Which of these animals is a mammal",
                  "Ant",
                  "Bee",

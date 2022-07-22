@@ -1,14 +1,14 @@
 from typing import List
 
-from Survey import question_parser
-from Survey.question import Question
+from survey import survey_parser
+from survey.survey_element import SurveyElement
 
 
-def get_questions(path: str) -> List[Question]:
+def get_questions(path: str) -> List[SurveyElement]:
     with open(path) as file:
         lines = file.readlines()
         lines = _strip_new_lines_at_end(lines)
-        questions = question_parser.parse(lines)
+        questions = survey_parser.parse(lines)
     return questions
 
 

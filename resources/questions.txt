@@ -2,11 +2,11 @@
 Ant
 Bee
 *Cat
-?How old are you
+?What is the smallest number
 *99
 123
 312
-?What is your favorite color
+?What is my favorite color
 blue
 *green
 yellow

@@ -1,30 +1,30 @@
 from enum import Enum
 from typing import List
 
-from Survey.question import Question
+from survey.survey_element import SurveyElement
 
 QUESTION_MARKER = "?"
 CORRECT_ANSWER_MARKER = "*"
 
 
-def parse(raw_file: List[str]) -> List[Question]:
+def parse(raw_file: List[str]) -> List[SurveyElement]:
     result = []
-    tmp_question: Question = Question()
+    parsed_element: SurveyElement = SurveyElement()
     for line in raw_file:
         line, is_question = _parse_for_question(line)
         if is_question:
-            if tmp_question.is_valid_question():
-                result.append(tmp_question)
-            tmp_question = Question()
-            tmp_question.question = line
+            if parsed_element.is_valid_question():
+                result.append(parsed_element)
+            parsed_element = SurveyElement()
+            parsed_element.question = line
         else:
             line, is_correct_answer = _parse_answer(line)
             if is_correct_answer:
-                tmp_question.add_right_answer(line)
+                parsed_element.add_right_answer(line)
             else:
-                tmp_question.add_wrong_answer(line)
-    if tmp_question.is_valid_question():
-        result.append(tmp_question)
+                parsed_element.add_wrong_answer(line)
+    if parsed_element.is_valid_question():
+        result.append(parsed_element)
     return result
 
 

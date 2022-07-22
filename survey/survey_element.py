@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Question(object):
+class SurveyElement(object):
     question: str
     answer: List[str]
     _correct_answer_index: int
