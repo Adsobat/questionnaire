@@ -17,16 +17,16 @@ class QuestionProvider(TestCase):
 
         question_texts = [q.question for q in questions]
 
-        self.assertEqual("Which of these animals is a mammal", question_texts[0])
-        self.assertEqual("How old are you", question_texts[1])
-        self.assertEqual("What is your favorite color", question_texts[2])
+        self.assertEqual("Which of these animals is a mammal?", question_texts[0])
+        self.assertEqual("How old are you?", question_texts[1])
+        self.assertEqual("What is your favorite color?", question_texts[2])
 
     def test_get_questions__correct_answer_parse(self):
         questions = survey_provider.get_questions(path=TEST_DATA_PATH)
 
         question_answers = [q.answer for q in questions]
 
-        self.assertEqual(["Ant", "Bee", "Cat"], question_answers[0])
-        self.assertEqual(["99", "123", "312"], question_answers[1])
-        self.assertEqual(["blue", "green", "yellow", "apple"], question_answers[2])
+        self.assertEqual(["Ant", "Bee", "Cat", "I don't know."], question_answers[0])
+        self.assertEqual(["99", "123", "312", "I don't know."], question_answers[1])
+        self.assertEqual(["blue", "green", "yellow", "apple", "I don't know."], question_answers[2])
 

@@ -9,7 +9,7 @@ class UI(TestCase):
         question.question = "What is your house like?"
         question.add_wrong_answer("curly")
         question.add_wrong_answer("big")
-        question.add_right_answer("cheap")
+        question.add_correct_answer("cheap")
 
         question_str = ui.render_question(question)
 

@@ -19,7 +19,7 @@ class QuestionCreation(TestCase):
 
     def test_add_right_answer_beginning(self):
         q = SurveyElement()
-        q.add_right_answer("hello")
+        q.add_correct_answer("hello")
         q.add_wrong_answer("wrong")
         q.add_wrong_answer("wrong2")
         self.assertEqual(0, q._correct_answer_index)
@@ -28,7 +28,7 @@ class QuestionCreation(TestCase):
         question = SurveyElement()
         question.add_wrong_answer("a1")
         question.add_wrong_answer("a2")
-        question.add_right_answer("right")
+        question.add_correct_answer("right")
         question.add_wrong_answer("a3")
 
         right_answer = question.get_correct_answer()
@@ -44,47 +44,4 @@ class QuestionCreation(TestCase):
         self.assertEqual("a1", question.answer[0])
         self.assertEqual("a2", question.answer[1])
 
-    def test_is_valid_question(self):
-        question = SurveyElement()
 
-        question.question = "question?"
-        question.add_right_answer("right")
-        question.add_wrong_answer("a1")
-
-        self.assertTrue(question.is_valid_question())
-
-    def test_is_valid_question__no_answer(self):
-        question = SurveyElement()
-        question.question = "hallo"
-        question.add_wrong_answer("a1")
-
-        before_adding_answer = question.is_valid_question()
-        question.add_right_answer("right")
-
-        self.assertFalse(before_adding_answer)
-        self.assertTrue(question.is_valid_question())
-
-    def test_is_valid_question__wrong_correct_answer_index(self):
-        question = SurveyElement()
-        question.question = "hallo"
-        question.add_wrong_answer("a1")
-        question.add_right_answer("right")
-
-        is_valid_question = question.is_valid_question()
-        question.answer = question.answer[0:1]
-        after_wrong_index = question.is_valid_question()
-
-        self.assertFalse(after_wrong_index)
-        self.assertTrue(is_valid_question)
-
-    def test_is_valid_question__no_question_set(self):
-        question = SurveyElement()
-        question.add_wrong_answer("a1")
-        question.add_right_answer("right")
-
-        before_valid_question = question.is_valid_question()
-        question.question = "hallo"
-        after_valid_question = question.is_valid_question()
-
-        self.assertFalse(before_valid_question)
-        self.assertTrue(after_valid_question)

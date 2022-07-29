@@ -9,8 +9,9 @@ def ask_question(survey_element: SurveyElement) -> Answer:
     render_text(question_console_representation)
     picked_answer_number = _get_user_input(1, len(survey_element.answer))
     picked_answer = survey_element.answer[picked_answer_number - 1]
+    correct_answer = survey_element.get_correct_answer()
     is_correct = survey_element.get_correct_answer_number() == picked_answer_number
-    return Answer(question=survey_element.question, picked_answer=picked_answer, is_correct=is_correct)
+    return Answer(question=survey_element.question, picked_answer=picked_answer, correct_answer=correct_answer,is_correct=is_correct)
 
 
 def _get_user_input(min_value: int, max_value: int):
@@ -51,6 +52,7 @@ def render_question(survey_element: SurveyElement) -> List[str]:
 
 
 def _print_score(correctly_answered, points, questions_amount):
+
     print(f"you got {correctly_answered} / {questions_amount} right ({points}%)")
 
 
@@ -67,3 +69,4 @@ def _render_answers_result(answers: List[Answer]):
             print(f" Your answer {answer.picked_answer} is correct")
         else:
             print(f" Your answer {answer.picked_answer} is wrong")
+            print(f" {answer.correct_answer} would be correct")

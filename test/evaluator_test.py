@@ -5,15 +5,15 @@ from evaluator.question_evaluator import evaluate
 
 class Evaluator(TestCase):
     def test_evaluate__correct_answers(self):
-        answers = [Answer("q", "yes", True)]
+        answers = [Answer("q", "yes", "yes", True)]
 
         correctly_answered, points = evaluate(answers)
 
         self.assertEqual(1, correctly_answered)
-        self.assertEqual(1, points)
+        self.assertEqual(100, points)
 
     def test_evaluate__wrong_answers(self):
-        answers = [Answer("q", "yes", False)]
+        answers = [Answer("q", "yes", "no", False)]
 
         correctly_answered, points = evaluate(answers)
 
@@ -21,11 +21,12 @@ class Evaluator(TestCase):
         self.assertEqual(0.0, points)
 
     def test_evaluate__points_score(self):
-        answers = [Answer("q", "yes", False), Answer("q", "yes", True)]
+        answers = [Answer("q", "yes", "no", False),
+                   Answer("q", "yes", "yes", True)]
 
         _, points = evaluate(answers)
 
-        self.assertEqual(0.5, points)
+        self.assertEqual(50.0, points)
 
     def test_evaluate__no_answers(self):
         answers = []
